@@ -1,0 +1,84 @@
+<div class="jumbotron">
+  <div class="container">
+      <h3>Agenda Centauro </h3>
+      <hr />
+      <div class="row">
+          <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+              <h3 class="panel-title">Users</h3>
+            </div>
+            <table id="mytable" class="table table-bordred table-striped">
+                        
+              <thead>      
+                <th></th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono</th>
+                <th>Extención</th>
+                <th>Empresa</th>
+                <th>Edit</th>             
+                <th>Delete</th>
+              </thead>
+
+              <tbody>
+                <tr ng-repeat="user in users">
+                    <td><input type="checkbox" class="checkthis" /></td>
+                    <td>{{user.Nombre}}</td>
+                    <td>{{user.Apellido}}</td>
+                    <td>{{user.Telefono}}</td>
+                    <td>{{user.Extencion}}</td>
+                    <td>{{user.Empresa}}</td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary" id="btn-cambios" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger"  id="btn-cambios" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    
+                </tr>
+              </tbody> 
+
+            </table>
+            <hr />
+          </div>
+            <div class="from-user">
+              <!-- <form ng-submit="addUser()">
+                  <input type="texto" size="30" placeholder="Agregar una nueva tarea" ng-model="textoNuevaTarea" >
+              </form> -->
+              <form role="form" ng-submit="addUser()">
+                  <h3>Agregar nuevo usuario</h3>
+                  <input type="text" placeholder="Nombre" class="form-control" ng-model="nombre">
+                <br />
+                  <input type="text" placeholder="Apellido" class="form-control" ng-model="apellido">
+                <br />
+                  <input type="text" placeholder="Teléfono" class="form-control" ng-model="telefono">
+                <br />
+                  <input type="text" placeholder="Extención" class="form-control" ng-model="extencion">
+                <br />
+                  <input type="text" placeholder="Empresa" class="form-control" ng-model="empresa">
+                <br />
+                <button class="btn btn-primary" id="btn-cambios" type="submit">Agregar</button>
+              </form>              
+            </div>
+
+            <div ng-repeat="message in messages">
+            <p>{{message}}</p>
+              
+            </div>
+           
+      </div>
+  </div>
+</div>
+
+<div class="row marketing">
+
+  <input type="text" class="form-control" ng-model="message.text">
+
+  <button type="button" 
+          class="btn btn-success" 
+          ng-click="setMessage()">Set Message</button>
+
+  <button type="button" 
+          class="btn btn-warning" 
+          ng-click="updateMessage()">Update Message</button>    
+
+  <button type="button" 
+          class="btn btn-danger" 
+          ng-click="deleteMessage()">Update Message</button>        
+</div>

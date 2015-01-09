@@ -21,64 +21,34 @@
               </thead>
 
               <tbody>
-                <tr ng-repeat="user in users">
-                    <td><input type="checkbox" class="checkthis" /></td>
-                    <td>{{user.Nombre}}</td>
-                    <td>{{user.Apellido}}</td>
-                    <td>{{user.Telefono}}</td>
-                    <td>{{user.Extencion}}</td>
-                    <td>{{user.Empresa}}</td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary" id="btn-cambios" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger"  id="btn-cambios" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                    
+                <tr ng-repeat="user in users" ng-disabled="user.valor">
+                    <td><input  onclick="disableTxt()" type="checkbox" class="checkthis" ng-model="user.valor" ng-change="users.$save(user)"/></td>
+                    <td><input  Enabled="true" id="user{{user.valor}}" type="text" placeholder="Nombre" class="form-control" ng-model="user.valor"></td>
+                    <td><input  type="text" placeholder="Apellido" class="form-control" ng-model="user.apellido"></td>
+                    <td><input  type="text" placeholder="Teléfono" class="form-control" ng-model="user.telefono"></td>
+                    <td><input  type="text" placeholder="Extención" class="form-control" ng-model="user.extencion"></td>
+                    <td><input  type="text" placeholder="Empresa" class="form-control" ng-model="user.empresa"></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button  value=""class="btn btn-primary" id="btn-cambios" data-title="Edit" data-toggle="modal" data-target="#edit" ng-click="user.valor='false';users.$save(user);"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button  class="btn btn-danger"  id="btn-cambios" data-title="Delete" data-toggle="modal" data-target="#delete" ng-click="users.$remove(user);"><span class="glyphicon glyphicon-trash"></span></button></p></td>
                 </tr>
               </tbody> 
 
             </table>
             <hr />
-          </div>
-            <div class="from-user">
-              <!-- <form ng-submit="addUser()">
-                  <input type="texto" size="30" placeholder="Agregar una nueva tarea" ng-model="textoNuevaTarea" >
-              </form> -->
-              <form role="form" ng-submit="addUser()">
-                  <h3>Agregar nuevo usuario</h3>
-                  <input type="text" placeholder="Nombre" class="form-control" ng-model="nombre">
-                <br />
-                  <input type="text" placeholder="Apellido" class="form-control" ng-model="apellido">
-                <br />
-                  <input type="text" placeholder="Teléfono" class="form-control" ng-model="telefono">
-                <br />
-                  <input type="text" placeholder="Extención" class="form-control" ng-model="extencion">
-                <br />
-                  <input type="text" placeholder="Empresa" class="form-control" ng-model="empresa">
-                <br />
-                <button class="btn btn-primary" id="btn-cambios" type="submit">Agregar</button>
-              </form>              
-            </div>
-
-            <div ng-repeat="message in messages">
-            <p>{{message}}</p>
-              
-            </div>
-           
+          </div>          
       </div>
   </div>
 </div>
+<script>
+function disableTxt() {
 
-<div class="row marketing">
+      document.getElementById("usertrue").disabled = true;
+     // console.log(document.getElementById("usertrue").id;
+    
+    
+}
 
-  <input type="text" class="form-control" ng-model="message.text">
-
-  <button type="button" 
-          class="btn btn-success" 
-          ng-click="setMessage()">Set Message</button>
-
-  <button type="button" 
-          class="btn btn-warning" 
-          ng-click="updateMessage()">Update Message</button>    
-
-  <button type="button" 
-          class="btn btn-danger" 
-          ng-click="deleteMessage()">Update Message</button>        
-</div>
+function undisableTxt() {
+    document.getElementById("myText").disabled = false;
+  }
+</script>

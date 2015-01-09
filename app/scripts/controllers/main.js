@@ -7,115 +7,67 @@
  * # MainCtrl
  * Controller of the yeomanAngularApp
  */
+
 angular.module('yeomanAngularApp')
 
-  .controller('MainCtrl', function ($scope,$timeout) {
+
+
+  //app.controller("SampleCtrl", ["$scope", "$firebase",function($scope, $firebase) {
+
+  .controller('MainCtrl', function ($scope,$timeout,$location,$firebase) {
   	var rootRef = new Firebase('https://aplication.firebaseio.com/');
   	
+    //var ref = new Firebase("https://blinding-heat-3001.firebaseio.com//data");
     var usersRef = rootRef.child('user');
+    var sync = $firebase(usersRef);
+    $scope.users = sync.$asArray();
+
+    
     var messageRef = rootRef.child('massage');
+    $('.show-from-user').toggle(700);
 
     $scope.nombre = null;
     $scope.apellido = null;
     $scope.telefono = null;
     $scope.extencion = null;
     $scope.empresa = null;
-    $scope.messages = [];
-   /* 
-    messageRef.on('child_added', function(snapshot){
-      $timeout(function(){
-        var snapshotVal = snapshot.val();
-        console.log(snapshotVal);
-        $scope.messages.push({
-          text: snapshotVal.text,
-          user: snapshotVal.user,
-          name: snapshot.key()
-        });
-      });
-    });
 
-    messageRef.on('child_changed', function(snapshot){
-      $timeout(function(){
-        //var snapshotVal = snapshot.val();
-        console.log(snapshot.key());
-      });
-    });
-*/
     usersRef.on('value', function(snapshot){
       $timeout(function(){
-        var snapshotVal = snapshot.val();
-        //console.log(snapshot.key());
-        $scope.users = snapshotVal;
-      });
-    });
-
-
-    usersRef.on('child_added', function(snapshot){
-      $timeout(function(){
-        var snapshotVal = snapshot.val();
-        console.log(snapshotVal);
-        $scope.messages.push({
-          Nombre: snapshotVal.Nombre,
-          Telefono: snapshotVal.Telefono,
-          Extencion: snapshotVal.Extencion,
-          name: snapshot.key()
-        });
+        
       });
     });
 
     usersRef.on('child_changed', function(snapshot){
       $timeout(function(){
-        //var snapshotVal = snapshot.val();
-        console.log(snapshot.key());
+        $scope.users = sync.$asArray();
       });
     });
 
     $scope.addUser = function(){
+     
       var newUser = {
-        Nombre: $scope.nombre,
-        Apellido: $scope.apellido,
-        Telefono: $scope.telefono,
-        Extencion: $scope.extencion,
-        Empresa: $scope.empresa
-      }
+        nombre: $scope.nombre,
+        apellido: $scope.apellido,
+        telefono: $scope.telefono,
+        extencion: $scope.extencion,
+        empresa: $scope.empresa,
+        valor: false
+      };
       $scope.nombre = null;
       $scope.apellido = null;
       $scope.telefono = null;
       $scope.extencion = null;
       $scope.empresa = null;
 
-      usersRef.push(newUser)
-    }
+      usersRef.push(newUser);
+      $location.url("home");
+    };
 
+    $scope.cancelar = function(){
 
-/*
-    $scope.$watch('message.text' , function(text){
-      if (!text) {
-        return;
-      }
-      messageRef.update({
-        text: text
-      });
-    });
+      $('.from-user').toggle(700);
+      alert(usersRef);
+    };
 
-  	$scope.setMessage = function(){
-  		messageRef.set({
-  			user: 'Bob',
-  			text: 'Hi',
-        lastName:'alfaro'
-  		});
-  	}
-
-  	$scope.updateMessage = function(){
-  		messageRef.update({
-  			lastName:'Alfaro'
-  		});
-  	}
-
-  	$scope.deleteMessage = function(){
-  		messageRef.remove();
-
-  	}
-  */  
-
-  });
+});    

@@ -100,11 +100,31 @@ body {
 
 .from-user{
   padding: 15px 15px 15px 15px; 
+  display: none;
 }
 
   .container {
     max-width: 80%;
   }
+  .show-from-user{
+    position: relative;
+    padding: 15px 15px 15px 15px;
+    border: solid 1px #4682B4;
+    border-radius: 15px;
+    max-width: 50%;
+    left: 232px
+  }
+  .show-from-user{
+    display: none;
+  }
+.usuario-false{
+  enable
+}
+
+input[name=prueba] {
+    disabled: disabled; /* Does not work */
+}
+
 /*--------------------------------------*/ 
 /*    fin estilos de la la tabla        */
 /*--------------------------------------*/

@@ -1,0 +1,24 @@
+<div class="jumbotron">
+  <div class="container">
+      <h3>Agregar nuevo usuario </h3>
+      <hr />
+      <div class="row">
+
+            <div class="show-from-user">
+              <form role="form" ng-submit="addUser()">
+                  <input type="text" placeholder="Nombre" class="form-control"  ng-model="nombre">
+                <br />
+                  <input type="text" placeholder="Apellido" class="form-control" ng-model="apellido">
+                <br />
+                  <input type="text" placeholder="Teléfono" class="form-control" ng-model="telefono" >
+                <br />
+                  <input type="text" placeholder="Extención" class="form-control" ng-model="extencion" >
+                <br />
+                  <input type="text" placeholder="Empresa" class="form-control" ng-model="empresa" >
+                <br />
+                <button class="btn btn-primary" id="btn-cambios"  type="submit">Agregar</button>
+              </form>              
+            </div>           
+      </div>
+  </div>
+</div>
